@@ -1,4 +1,4 @@
-{
+﻿{
     "brand_name": "YourBrand",
     "brand_domain": "yourbrand.com",
     "brand_hostname": {
@@ -73,7 +73,7 @@
         },
         "hostname": {
             "production": {
-                "com": "bot.yourbrand.com"
+                "com": "trading-bot-template-nu.vercel.app"
             },
             "staging": {
                 "com": "staging-bot.yourbrand.com"
@@ -95,3 +95,5 @@
         }
     }
 }
+
+
