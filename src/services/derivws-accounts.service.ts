@@ -1,4 +1,4 @@
-import { isProduction } from '@/components/shared';
+﻿import { isProduction } from '@/components/shared';
 import brandConfig from '../../brand.config.json';
 
 /**
@@ -135,6 +135,7 @@ export class DerivWSAccountsService {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
+                        'Deriv-App-ID': process.env.CLIENT_ID || '',
                     },
                 });
 
@@ -199,6 +200,7 @@ export class DerivWSAccountsService {
                     method: 'POST',
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
+                        'Deriv-App-ID': process.env.CLIENT_ID || '',
                     },
                 });
 
@@ -277,3 +279,4 @@ export class DerivWSAccountsService {
         }
     }
 }
+
