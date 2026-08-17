@@ -180,7 +180,10 @@
             }
 
             @include desktop-screen {
-                padding: 80px 216px 0;
+                padding: 3.2rem 5rem;
+                background:
+                    radial-gradient(circle at 50% 0%, rgb(57 120 246 / 10%), transparent 32rem),
+                    #f5f8fd;
             }
 
             @include mobile-or-tablet-screen {
@@ -191,6 +194,8 @@
 
             .quick-panel {
                 flex: 1 1 44%;
+                max-width: 108rem;
+                margin: 0 auto;
             }
 
             .preview-panel {
@@ -327,7 +332,8 @@
                 word-wrap: break-word;
                 font-size: 1.3rem;
                 text-align: center;
-                padding: 2.2rem;
+                padding: 1.2rem 0;
+                gap: 1.6rem;
 
                 @include mobile-screen {
                     flex-wrap: wrap;
@@ -359,10 +365,20 @@
             }
 
             &__block {
-                @include flex-center;
-
+                display: flex;
+                align-items: center;
                 flex-direction: column;
-                padding-inline-end: 4rem;
+                flex: 1 1 0;
+                min-width: 17rem;
+                min-height: 22rem;
+                padding: 2.2rem 1.6rem;
+                border: 1px solid #dce6f3;
+                border-radius: 2rem;
+                background: #fff;
+                box-shadow: 0 1.2rem 3.2rem rgb(28 61 112 / 8%);
+                color: #10264a;
+                font: inherit;
+                transition: transform 180ms ease, box-shadow 180ms ease;
 
                 @include mobile-or-tablet-screen {
                     padding: 1rem;
@@ -370,6 +386,8 @@
 
                 &:hover {
                     cursor: pointer;
+                    transform: translateY(-0.4rem);
+                    box-shadow: 0 1.8rem 4rem rgb(28 61 112 / 13%);
                 }
 
                 span {
@@ -380,6 +398,14 @@
                     @include mobile-or-tablet-screen {
                         height: auto;
                     }
+                }
+
+                small {
+                    min-height: 3.6rem;
+                    margin-top: 0.8rem;
+                    color: #76859b;
+                    font-size: 1.15rem;
+                    line-height: 1.45;
                 }
 
                 &--minimized {
@@ -395,9 +421,10 @@
             }
 
             &__images {
-                background-color: var(--general-section-1);
+                background: linear-gradient(145deg, #f7faff, #eaf1fb);
                 margin-bottom: 0.8rem;
-                border-radius: 0.8rem;
+                border: 1px solid #dce6f3;
+                border-radius: 1.6rem;
                 padding: 1.6rem;
 
                 &--minimized {
@@ -407,6 +434,22 @@
                         padding: 0.8rem;
                     }
                 }
+            }
+
+            &__open {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100% !important;
+                height: auto !important;
+                margin-top: auto;
+                padding: 1rem 1.2rem;
+                border-radius: 999px;
+                background: #eff4fb;
+                color: #204e8c;
+                font-size: 1.05rem;
+                font-weight: 900;
+                letter-spacing: 0.06em;
             }
         }
     }

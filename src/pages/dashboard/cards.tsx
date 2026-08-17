@@ -31,6 +31,7 @@ type TCardArray = {
     id: string;
     icon: React.ReactElement;
     content: React.ReactElement;
+    description: string;
     callback: () => void;
 };
 
@@ -63,6 +64,7 @@ const Cards = observer(({ is_mobile, has_dashboard_strategies }: TCardProps) => 
                 <DerivLightMyComputerIcon height='48px' width='48px' />
             ),
             content: is_mobile ? <Localize i18n_default_text='Local' /> : <Localize i18n_default_text='My computer' />,
+            description: localize('Import from your device'),
             callback: () => {
                 openFileLoader();
                 /* [AI] - Analytics event tracking removed - see migrate-docs/MONITORING_PACKAGES.md for re-implementation guide */
@@ -73,6 +75,7 @@ const Cards = observer(({ is_mobile, has_dashboard_strategies }: TCardProps) => 
             id: 'google-drive',
             icon: <DerivLightGoogleDriveIcon height='48px' width='48px' />,
             content: <Localize i18n_default_text='Google Drive' />,
+            description: localize('Load a saved strategy'),
             callback: () => {
                 openGoogleDriveDialog();
                 /* [AI] - Analytics event tracking removed - see migrate-docs/MONITORING_PACKAGES.md for re-implementation guide */
@@ -83,6 +86,7 @@ const Cards = observer(({ is_mobile, has_dashboard_strategies }: TCardProps) => 
             id: 'bot-builder',
             icon: <DerivLightBotBuilderIcon height='48px' width='48px' />,
             content: <Localize i18n_default_text='Bot Builder' />,
+            description: localize('Build blocks visually'),
             callback: () => {
                 setActiveTab(DBOT_TABS.BOT_BUILDER);
                 /* [AI] - Analytics event tracking removed - see migrate-docs/MONITORING_PACKAGES.md for re-implementation guide */
@@ -93,6 +97,7 @@ const Cards = observer(({ is_mobile, has_dashboard_strategies }: TCardProps) => 
             id: 'quick-strategy',
             icon: <DerivLightQuickStrategyIcon height='48px' width='48px' />,
             content: <Localize i18n_default_text='Quick strategy' />,
+            description: localize('Start with a template'),
             callback: () => {
                 setActiveTab(DBOT_TABS.BOT_BUILDER);
                 setFormVisibility(true);
@@ -116,13 +121,15 @@ const Cards = observer(({ is_mobile, has_dashboard_strategies }: TCardProps) => 
                     id='tab__dashboard__table__tiles'
                 >
                     {actions.map(icons => {
-                        const { icon, content, callback, id } = icons;
+                        const { icon, content, description, callback, id } = icons;
                         return (
-                            <div
+                            <button
+                                type='button'
                                 key={id}
                                 className={classNames('tab__dashboard__table__block', {
                                     'tab__dashboard__table__block--minimized': has_dashboard_strategies && is_mobile,
                                 })}
+                                onClick={callback}
                             >
                                 <div
                                     className={classNames('tab__dashboard__table__images', {
@@ -132,16 +139,15 @@ const Cards = observer(({ is_mobile, has_dashboard_strategies }: TCardProps) => 
                                     height='8rem'
                                     icon={icon}
                                     id={id}
-                                    onClick={() => {
-                                        callback();
-                                    }}
                                 >
                                     {icon}
                                 </div>
                                 <Text color='prominent' size={is_mobile ? 'xxs' : 'xs'}>
                                     {content}
                                 </Text>
-                            </div>
+                                <small>{description}</small>
+                                <span className='tab__dashboard__table__open'>OPEN <b aria-hidden='true'>→</b></span>
+                            </button>
                         );
                     })}
 

@@ -21,6 +21,7 @@ const AppHeader = observer(() => {
     const { isAuthorizing, activeLoginid, setIsAuthorizing, authData } = useApiBase();
     const { client } = useStore() ?? {};
     const [authTimeout, setAuthTimeout] = useState(false);
+    const [authError, setAuthError] = useState('');
     const is_account_regenerating = client?.is_account_regenerating || false;
 
     // Detect OAuth callback on mount (before App.tsx cleans up the URL).
@@ -85,22 +86,26 @@ const AppHeader = observer(() => {
 
     const handleSignup = useCallback(async () => {
         try {
+            setAuthError('');
             setIsAuthorizing(true);
             const oauthUrl = await generateOAuthURL('registration');
             if (oauthUrl) {
                 window.location.replace(oauthUrl);
             } else {
                 console.error('Failed to generate OAuth URL for signup');
+                setAuthError('Login needs a Deriv OAuth client ID for this website.');
                 setIsAuthorizing(false);
             }
         } catch (error) {
             console.error('Signup redirection failed:', error);
+            setAuthError('We could not open secure sign-up. Please try again.');
             setIsAuthorizing(false);
         }
     }, [setIsAuthorizing]);
 
     const handleLogin = useCallback(async () => {
         try {
+            setAuthError('');
             // Set authorizing state immediately when login is clicked
             setIsAuthorizing(true);
 
@@ -112,10 +117,12 @@ const AppHeader = observer(() => {
                 window.location.replace(oauthUrl);
             } else {
                 console.error('Failed to generate OAuth URL');
+                setAuthError('Login needs a Deriv OAuth client ID for this website.');
                 setIsAuthorizing(false);
             }
         } catch (error) {
             console.error('Login redirection failed:', error);
+            setAuthError('We could not open secure login. Please try again.');
             // Reset authorizing state if redirection fails
             setIsAuthorizing(false);
         }
@@ -240,6 +247,12 @@ const AppHeader = observer(() => {
                 </Wrapper>
                 <Wrapper variant='right'>{renderAccountSection('right')}</Wrapper>
             </Header>
+            {authError && (
+                <div className='app-header__auth-error' role='alert'>
+                    <span>{authError}</span>
+                    <button type='button' aria-label='Dismiss login message' onClick={() => setAuthError('')}>×</button>
+                </div>
+            )}
         </>
     );
 });

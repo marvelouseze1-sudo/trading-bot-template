@@ -40,6 +40,8 @@ import { useDevice } from '@deriv-com/ui';
 import RunPanel from '../../components/run-panel';
 import ChartModal from '../chart/chart-modal';
 import Dashboard from '../dashboard';
+import FreeBots from '../free-bots';
+import Pegasus from '../pegasus';
 import RunStrategy from '../dashboard/run-strategy';
 import './main.scss';
 
@@ -77,7 +79,7 @@ const AppWrapper = observer(() => {
     const { clear } = summary_card;
     const { DASHBOARD, BOT_BUILDER } = DBOT_TABS;
     const init_render = React.useRef(true);
-    const hash = ['dashboard', 'bot_builder', 'chart', 'tutorial'];
+    const hash = ['dashboard', 'bot_builder', 'free_bots', 'chart', 'pegasus', 'tutorial'];
     const { isDesktop } = useDevice();
     const location = useLocation();
     const navigate = useNavigate();
@@ -404,6 +406,17 @@ const AppWrapper = observer(() => {
                             <div
                                 label={
                                     <>
+                                        <span className='main__tab-emoji' aria-hidden='true'>🤖</span>
+                                        <Localize i18n_default_text='Free Bots' />
+                                    </>
+                                }
+                                id='id-free-bots'
+                            >
+                                <FreeBots handleTabChange={handleTabChange} />
+                            </div>
+                            <div
+                                label={
+                                    <>
                                         <LabelPairedChartLineCaptionRegularIcon
                                             height='24px'
                                             width='24px'
@@ -423,6 +436,17 @@ const AppWrapper = observer(() => {
                                 >
                                     <ChartWrapper show_digits_stats={false} />
                                 </Suspense>
+                            </div>
+                            <div
+                                label={
+                                    <>
+                                        <span className='main__tab-ai' aria-hidden='true'>AI</span>
+                                        <Localize i18n_default_text='Pegasus' />
+                                    </>
+                                }
+                                id='id-pegasus'
+                            >
+                                <Pegasus />
                             </div>
                             <div
                                 label={

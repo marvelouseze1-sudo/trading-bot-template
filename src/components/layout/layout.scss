@@ -6,8 +6,11 @@
     height: 100vh;
 
     .deriv-header {
-        background: var(--general-main-1);
-        height: 5.6rem;
+        background: rgb(255 255 255 / 94%);
+        height: 6.4rem;
+        border-bottom: 1px solid #dfe8f4;
+        box-shadow: 0 0.6rem 2.4rem rgb(24 61 111 / 7%);
+        backdrop-filter: blur(14px);
     }
 
     &.quick-strategy-active {

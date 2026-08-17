@@ -11,3 +11,43 @@
         }
     }
 }
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    color: #102b57 !important;
+
+    &__mark {
+        display: grid;
+        place-items: center;
+        width: 3.4rem;
+        height: 3.4rem;
+        border: 1px solid #d8b86d;
+        border-radius: 1.1rem;
+        background: linear-gradient(145deg, #fff7dc, #d8b86d);
+        color: #16335f;
+        font-size: 1rem;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        box-shadow: 0 0.6rem 1.8rem rgb(33 63 105 / 12%);
+    }
+
+    &__copy {
+        display: grid;
+        line-height: 1;
+
+        strong {
+            font-size: 1.25rem;
+            letter-spacing: 0.08em;
+        }
+
+        small {
+            margin-top: 0.4rem;
+            color: #7790ad;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+        }
+    }
+}

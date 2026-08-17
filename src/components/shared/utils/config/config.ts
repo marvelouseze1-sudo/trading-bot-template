@@ -220,12 +220,18 @@ export const clearCSRFToken = (): void => {
     sessionStorage.removeItem('oauth_csrf_token_timestamp');
 };
 
+export const getOAuthClientId = (): string => {
+    const environmentClientId = process.env.CLIENT_ID;
+    if (environmentClientId && environmentClientId !== 'undefined') return environmentClientId;
+    return brandConfig.platform.oauth_client_id?.trim() || '';
+};
+
 export const generateOAuthURL = async (prompt?: string) => {
     try {
         // Use brand config for login URLs
         const environment = isProduction() ? 'production' : 'staging';
         const hostname = brandConfig?.platform.auth2_url?.[environment];
-        const clientId = process.env.CLIENT_ID;
+        const clientId = getOAuthClientId();
 
         if (hostname && clientId) {
             // Generate CSRF token for security
@@ -270,6 +276,5 @@ export const generateOAuthURL = async (prompt?: string) => {
         console.error('Error generating OAuth URL:', error);
     }
 
-    // Fallback to hardcoded URLs if brand config fails
-    return ``;
+    return '';
 };

@@ -2,9 +2,48 @@
 @use 'components/shared/styles/mixins' as *;
 
 .app-header {
+    position: relative;
+    z-index: 20;
+
+    .auth-actions {
+        gap: 0.8rem;
+
+        button {
+            min-width: 9rem;
+            border-radius: 999px;
+            box-shadow: 0 0.5rem 1.6rem rgb(24 61 111 / 10%);
+        }
+    }
+
     &__account-settings {
         padding-inline-end: 1.2rem;
         border-inline-end: 0.1rem solid var(--general-section-1);
+    }
+
+    &__auth-error {
+        position: fixed;
+        top: 7.2rem;
+        right: 1.6rem;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        max-width: min(42rem, calc(100vw - 3.2rem));
+        padding: 1.2rem 1.4rem;
+        border: 1px solid #f0c9c9;
+        border-radius: 1.2rem;
+        background: #fff5f5;
+        color: #8a2f3b;
+        box-shadow: 0 1.2rem 3rem rgb(51 28 44 / 15%);
+        font-size: 1.25rem;
+
+        button {
+            border: 0;
+            background: transparent;
+            color: inherit;
+            font-size: 2rem;
+            cursor: pointer;
+        }
     }
 
     &__account-settings,

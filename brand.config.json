@@ -1,11 +1,11 @@
 ﻿{
-    "brand_name": "YourBrand",
-    "brand_domain": "yourbrand.com",
+    "brand_name": "TradePilot",
+    "brand_domain": "trading-bot-template-nu.vercel.app",
     "brand_hostname": {
         "staging": "staging.yourbrand.com/dashboard",
         "production": "yourbrand.com/dashboard"
     },
-    "domain_name": "YourBrand.com",
+    "domain_name": "TradePilot Bot",
     "colors": {
         "primary": "#3b82f6",
         "secondary": "#64748b",
@@ -58,14 +58,15 @@
         "css_variable_prefix": "--brand"
     },
     "platform": {
-        "name": "Trading Bot",
+        "name": "TradePilot Bot",
+        "oauth_client_id": "",
         "logo": {
             "type": "component",
             "component_name": "BrandLogo",
-            "alt_text": "Trading Bot",
+            "alt_text": "TradePilot Bot",
             "link_url": "/",
             "show_text": false,
-            "text": "Trading Bot"
+            "text": "TradePilot Bot"
         },
         "footer": {
             "enable_language_settings": false,
